@@ -1,5 +1,5 @@
-% 画幅切换：aspectratio=43（4:3，默认）↔ aspectratio=169（16:9）
-\documentclass[10pt,aspectratio=43,hyperref={colorlinks,citecolor=peking_blue,urlcolor=peking_blue,linkcolor=}]{beamer}
+% 画幅切换：aspectratio=43（4:3）↔ aspectratio=169（16:9，当前）
+\documentclass[10pt,aspectratio=169,hyperref={colorlinks,citecolor=peking_blue,urlcolor=peking_blue,linkcolor=}]{beamer}
 \usepackage{PekingU}
 \usefonttheme{serif}
 \usepackage{lipsum}
@@ -198,6 +198,8 @@ important contents are \textcolor{peking}{\bf bold red} \citep{MachineLearningI}
     \begin{table}
         \caption{Units for Magnetic Properties}
         \label{table}
+        \setlength{\parskip}{0pt}% caption 与表头之间不插入段间距
+        \footnotesize
         \setlength{\tabcolsep}{3pt}
         \begin{tabular}{p{40pt}p{100pt}p{140pt}}
         \toprule
