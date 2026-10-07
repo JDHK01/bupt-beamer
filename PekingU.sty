@@ -136,6 +136,11 @@
 %% try
 \setbeamercolor{block title}{bg=peking_blue,fg=white}
 \setbeamercolor{block body}{bg=peking_blue!10}
+% 定理/引理等 box 的标题字号：beamer 默认 normalsize 偏大，与正文比例失衡，
+% 收敛到 \small（保留默认加粗）
+\setbeamerfont{block title}{size=\small}
+\setbeamerfont{block title alerted}{size=\small}
+\setbeamerfont{block title example}{size=\small}
 
 \BeforeBeginEnvironment{definition}{%
     \setbeamercolor{block title}{bg=peking_blue,fg=white}
