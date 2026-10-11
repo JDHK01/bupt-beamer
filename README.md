@@ -25,6 +25,8 @@
 
 预览图由当前模板编译生成；修改 `main.tex` 后，可以使用 XeLaTeX 重新生成自己的 PDF 和预览。
 
+完整编译结果： [下载 `main.pdf`](main.pdf)。
+
 ## 文件结构
 
 ```text
