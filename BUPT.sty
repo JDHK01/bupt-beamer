@@ -33,31 +33,31 @@
 
 % ---- 固定高度顶栏（对 smoothbars 的修补）----
 % 仅做三件事：① 去掉原版顶栏/标题条之间的模糊渐变过渡；② 固定条带高度（原版无标题的
-% 分节目录页会比正文页高一截）；③ 配色统一为 peking。导航条内部几何（文字/圆点行位置、
+% 分节目录页会比正文页高一截）；③ 配色统一为 bupt。导航条内部几何（文字/圆点行位置、
 % 0.3cm 内边距、字号）完全保留原版：条带高度 = 原版 barshade 的 6ex（同样在
 % \AtBeginDocument 的 headline 字体上下文中求值），导航行经像素校准锚定在原版位置
 % （tab 文字基线 y≈6.01pt，pdftotext -bbox 对照原版误差 <0.01pt）。
-% 右上角校徽（Figures/PKU-emblem-names.png，墨迹紧贴画布）以墨迹对齐
+% 右上角校徽（Figures/BUPT-emblem-names.jpg，墨迹紧贴画布）以墨迹对齐
 % 标题文字：高度 = 当前标题的墨迹高度（\settoheight + \settodepth），
 % 顶边锚定在标题墨迹顶线，与标题文字严格同高对齐。
 \makeatletter
-\newlength{\pku@headheight}
-\newlength{\pku@titleht}
-\newlength{\pku@titledp}
-\newlength{\pku@logoheight}
-\newlength{\pku@logowidth}
-\newlength{\pku@logoyshift}
-% 顶部导航条统一为主题红 peking（原继承 palette quaternary，为更暗的红，
-% 与底部栏 / 首页标题 box 的纯 peking 不一致）
-\setbeamercolor{section in head/foot}{bg=peking,fg=white}
-\setbeamercolor{section in head/foot shaded}{bg=peking,fg=white!55!peking}
+\newlength{\bupt@headheight}
+\newlength{\bupt@titleht}
+\newlength{\bupt@titledp}
+\newlength{\bupt@logoheight}
+\newlength{\bupt@logowidth}
+\newlength{\bupt@logoyshift}
+% 顶部导航条统一为主题红 bupt（原继承 palette quaternary，为更暗的红，
+% 与底部栏 / 首页标题 box 的纯 bupt 不一致）
+\setbeamercolor{section in head/foot}{bg=bupt,fg=white}
+\setbeamercolor{section in head/foot shaded}{bg=bupt,fg=white!55!bupt}
 % 条带高度：内容块（tab 文字 + mini-frame 圆点行，约 10.2pt）上下各留 ~1pt 呼吸空间，
 % 像素校准为 11.6pt（原版 6ex 在不同字体上下文下求值结果偏大，导致底部空 ~8px）
-\AtBeginDocument{\global\pku@headheight=11.6pt}
+\AtBeginDocument{\global\bupt@headheight=11.6pt}
 \setbeamertemplate{headline}
 {%
-  \begin{beamercolorbox}[wd=\paperwidth,colsep=0pt,ht=\pku@headheight,dp=0ex,vmode]{section in head/foot}%
-    \vbox to \pku@headheight{%
+  \begin{beamercolorbox}[wd=\paperwidth,colsep=0pt,ht=\bupt@headheight,dp=0ex,vmode]{section in head/foot}%
+    \vbox to \bupt@headheight{%
       {\vskip0.52pt}%  % 导航行锚定：像素校准至原版 tab 基线（y=6.01pt，见上方注释）
       \insertnavigation{\paperwidth}%
       \vss}%
@@ -67,26 +67,26 @@
 {%
   \nointerlineskip
   \usebeamerfont*{frametitle}%
-  \settoheight{\pku@titleht}{\insertframetitle}%
-  \settodepth{\pku@titledp}{\insertframetitle}%
-  \pku@logoheight=\dimexpr\pku@titleht+\pku@titledp\relax
-  \settowidth{\pku@logowidth}{\includegraphics[height=\pku@logoheight]{Figures/PKU-emblem-names.png}}%
+  \settoheight{\bupt@titleht}{\insertframetitle}%
+  \settodepth{\bupt@titledp}{\insertframetitle}%
+  \bupt@logoheight=\dimexpr\bupt@titleht+\bupt@titledp\relax
+  \settowidth{\bupt@logowidth}{\includegraphics[height=\bupt@logoheight]{Figures/BUPT-emblem-names.jpg}}%
   \begin{beamercolorbox}[wd=\paperwidth,sep=0.3cm,%
-    rightskip=\dimexpr\pku@logowidth+0.4cm\relax]{frametitle}%
+    rightskip=\dimexpr\bupt@logowidth+0.4cm\relax]{frametitle}%
     \strut\insertframetitle
     \ifx\insertframesubtitle\@empty\else
       \par{\usebeamerfont*{framesubtitle}\usebeamercolor[fg]{framesubtitle}\strut\insertframesubtitle}%
     \fi
   \end{beamercolorbox}%
   \nointerlineskip
-  \pku@logoyshift=\pku@headheight
-  \addtolength{\pku@logoyshift}{0.3cm}%
-  \addtolength{\pku@logoyshift}{\ht\strutbox}%
-  \addtolength{\pku@logoyshift}{-\pku@titleht}%
+  \bupt@logoyshift=\bupt@headheight
+  \addtolength{\bupt@logoyshift}{0.3cm}%
+  \addtolength{\bupt@logoyshift}{\ht\strutbox}%
+  \addtolength{\bupt@logoyshift}{-\bupt@titleht}%
   \begin{tikzpicture}[remember picture,overlay]
     \node[anchor=north east,inner sep=0pt]
-      at ([yshift=-\pku@logoyshift,xshift=-0.3cm]current page.north east)
-      {\includegraphics[height=\pku@logoheight]{Figures/PKU-emblem-names.png}};
+      at ([yshift=-\bupt@logoyshift,xshift=-0.3cm]current page.north east)
+      {\includegraphics[height=\bupt@logoheight]{Figures/BUPT-emblem-names.jpg}};
   \end{tikzpicture}%
 }
 \makeatother
@@ -101,22 +101,24 @@
 }{}}
 \makeatother
 
-\xdefinecolor{peking}{cmyk}{0,1,1,0.45}%{rgb}{0.543,0.0,0.0703} %{cmyk}{0,100,100,45}%{rgb}{0.5,0.0,0.0}  %RGB#820010
-\xdefinecolor{peking_gold}{cmyk}{0,0.35,0.75,0.05}
-\xdefinecolor{peking_blue}{cmyk}{0.6,0.35,0.0,0.4}
-\xdefinecolor{peking_darkblue}{cmyk}{1.0,0.6,0.0,0.5}
-\xdefinecolor{peking_gray}{cmyk}{0.0,0.0,0.08,0.55}
-\xdefinecolor{peking_dirt}{cmyk}{0.0,0.2,0.35,0.3}
-\xdefinecolor{peking_orange}{cmyk}{0.0,0.7,1.0,0.0}
-\xdefinecolor{peking_green}{cmyk}{0.2,0.0,1.0,0.15}
-\xdefinecolor{peking_darkgreen}{cmyk}{0.6,0.5,1.0,0.45}
-\xdefinecolor{pantone_gold}{RGB}{135,103,79}
-\xdefinecolor{pantone_silver}{RGB}{138,141,143}
-\xdefinecolor{WM_Gold}{cmyk}{0.09,0.29,0.66,0.24}
-\setbeamercolor{footline}{bg=peking}
-%\setbeamercolor{frametitle}{bg=white!70!pantone_gold,fg=peking}
-\setbeamercolor{frametitle}{bg=white,fg=peking}
-\setbeamercolor{title}{bg=peking}
+\xdefinecolor{bupt}{RGB}{1,58,137}%{rgb}{0.543,0.0,0.0703} %{cmyk}{0,100,100,45}%{rgb}{0.5,0.0,0.0}  %RGB#013A89
+\xdefinecolor{bupt_sky}{RGB}{95,130,179}
+\xdefinecolor{bupt_lightblue}{RGB}{138,165,201}
+\xdefinecolor{bupt_gold}{RGB}{207,161,74}
+\xdefinecolor{bupt_blue}{RGB}{0,88,166}
+\xdefinecolor{bupt_darkblue}{RGB}{0,39,92}
+\xdefinecolor{bupt_gray}{RGB}{90,98,110}
+\xdefinecolor{bupt_dirt}{RGB}{226,231,238}
+\xdefinecolor{bupt_orange}{RGB}{217,116,46}
+\xdefinecolor{bupt_green}{RGB}{58,133,93}
+\xdefinecolor{bupt_darkgreen}{RGB}{25,82,57}
+\xdefinecolor{pantone_gold}{RGB}{95,130,179}
+\xdefinecolor{pantone_silver}{RGB}{138,165,201}
+\xdefinecolor{WM_Gold}{RGB}{207,161,74}
+\setbeamercolor{footline}{bg=bupt}
+%\setbeamercolor{frametitle}{bg=white!70!pantone_gold,fg=bupt}
+\setbeamercolor{frametitle}{bg=white,fg=bupt}
+\setbeamercolor{title}{bg=bupt}
 %\setbeamerfont{frametitle}{size=\large}
 \setbeamerfont{frametitle}{series=\bfseries,size=\large}%,parent=structure}
 \setbeamerfont{footline}{series=\bfseries}
@@ -134,8 +136,8 @@
 \setbeamercolor{titlelike}{parent=palette primary}
 
 %% try
-\setbeamercolor{block title}{bg=peking_blue,fg=white}
-\setbeamercolor{block body}{bg=peking_blue!10}
+\setbeamercolor{block title}{bg=bupt_blue,fg=white}
+\setbeamercolor{block body}{bg=bupt_blue!8}
 % 定理/引理等 box 的标题字号：beamer 默认 normalsize 偏大，与正文比例失衡，
 % 收敛到 \small（保留默认加粗）
 \setbeamerfont{block title}{size=\small}
@@ -143,33 +145,33 @@
 \setbeamerfont{block title example}{size=\small}
 
 \BeforeBeginEnvironment{definition}{%
-    \setbeamercolor{block title}{bg=peking_blue,fg=white}
-    \setbeamercolor{block body}{bg=peking_blue!10}
+    \setbeamercolor{block title}{bg=bupt_blue,fg=white}
+    \setbeamercolor{block body}{bg=bupt_blue!8}
 }
 \AfterEndEnvironment{definition}{
- \setbeamercolor{block title}{bg=peking_blue,fg=white}
- \setbeamercolor{block body}{bg=peking_blue!10}
+ \setbeamercolor{block title}{bg=bupt_blue,fg=white}
+ \setbeamercolor{block body}{bg=bupt_blue!8}
 }
 
 \BeforeBeginEnvironment{theorem}{%
-    \setbeamercolor{block title}{bg=peking_orange,fg=white}
-    \setbeamercolor{block body}{bg=peking_orange!10}
+    \setbeamercolor{block title}{bg=bupt_orange,fg=white}
+    \setbeamercolor{block body}{bg=bupt_orange!10}
 }
 \AfterEndEnvironment{theorem}{
- \setbeamercolor{block title}{bg=peking_blue,fg=white}
- \setbeamercolor{block body}{bg=peking_blue!10}
+ \setbeamercolor{block title}{bg=bupt_blue,fg=white}
+ \setbeamercolor{block body}{bg=bupt_blue!8}
 }
 
 \BeforeBeginEnvironment{proposition}{%
-    \setbeamercolor{block title}{bg=peking_orange,fg=white}
-    \setbeamercolor{block body}{bg=peking_orange!10}
+    \setbeamercolor{block title}{bg=bupt_orange,fg=white}
+    \setbeamercolor{block body}{bg=bupt_orange!10}
 }
 \AfterEndEnvironment{proposition}{
- \setbeamercolor{block title}{bg=peking_blue,fg=white}
- \setbeamercolor{block body}{bg=peking_blue!10}
+ \setbeamercolor{block title}{bg=bupt_blue,fg=white}
+ \setbeamercolor{block body}{bg=bupt_blue!8}
 }
 
-\setbeamercolor*{block title example}{use={normal text,example text},bg=white!70!pantone_gold,fg=peking}
+\setbeamercolor*{block title example}{use={normal text,example text},bg=white!70!pantone_gold,fg=bupt}
 \setbeamercolor{fine separation line}{}
 \setbeamercolor{item projected}{fg=white}
 \setbeamercolor{palette sidebar primary}{use=normal text,fg=normal text.fg}
@@ -180,9 +182,9 @@
 \setbeamercolor{section in sidebar}{fg=brown}
 \setbeamercolor{section in sidebar shaded}{fg=grey}
 \setbeamercolor{separation line}{}
-\setbeamercolor{sidebar}{bg=peking}
+\setbeamercolor{sidebar}{bg=bupt}
 \setbeamercolor{sidebar}{parent=palette primary}
-\setbeamercolor{structure}{fg=peking}
+\setbeamercolor{structure}{fg=bupt}
 \setbeamercolor{subsection in sidebar}{fg=brown}
 \setbeamercolor{subsection in sidebar shaded}{fg=grey}
 \AtBeginSection[]{
@@ -192,7 +194,7 @@
 }
 \setbeamercolor{postgreen}{fg=black,bg=example text.fg!75!black!10!bg}
 \setbeamercolor{postred}{fg=black,bg=white!70!pantone_gold}
-\setbeamercolor{postblue}{fg=black,bg=peking_blue!10}
+\setbeamercolor{postblue}{fg=black,bg=bupt_blue!10}
 %\AtBeginSubsection[]{
 %	\begin{frame}
 %		\tableofcontents[sectionstyle=show/shaded,subsectionstyle=hide,subsubsectionstyle=hide]

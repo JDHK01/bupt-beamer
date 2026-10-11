@@ -18,3 +18,6 @@
 # 预览输出 / preview renders
 preview/
 main.pdf
+
+build/
+*.pdf
