@@ -11,6 +11,20 @@
 - 正文区块、定理、引用和表格使用北邮深蓝体系。
 - 主题主色为北邮 VI 素材中的深蓝 `#013A89`。
 
+## 预览
+
+以下图片来自仓库中 `main.tex` 的实际 XeLaTeX 编译结果，展示了首页、目录页、中文排版、定理区块和三线表格等页面。点击图片可以查看大图。
+
+| 首页 | 目录页 | 中文正文 |
+| --- | --- | --- |
+| [![首页预览](docs/preview-title.png)](docs/preview-title.png) | [![目录页预览](docs/preview-toc.png)](docs/preview-toc.png) | [![中文正文预览](docs/preview-chinese.png)](docs/preview-chinese.png) |
+
+| 定理与区块 | 三线表格 | 结束页 |
+| --- | --- | --- |
+| [![定理区块预览](docs/preview-theorem.png)](docs/preview-theorem.png) | [![表格预览](docs/preview-table.png)](docs/preview-table.png) | [![结束页预览](docs/preview-thanks.png)](docs/preview-thanks.png) |
+
+预览图由当前模板编译生成；修改 `main.tex` 后，可以使用 XeLaTeX 重新生成自己的 PDF 和预览。
+
 ## 文件结构
 
 ```text
